@@ -5,16 +5,11 @@
 		<div class="col-10">
 			<div class="card">
 				<div class="card-header">
-					<h6 class="card-title">Personas</h6>
-					<div class="card-btns">
-						<a href="#" class="card-minimize btn btn-card-action btn-round" title="Minimizar"
-						   data-toggle="tooltip">
-							<i class="now-ui-icons arrows-1_minimal-up"></i>
-						</a>
-					</div>
+					<h6>Personas</h6>
+					<a href="{{ route('people.create') }}" class='btn btn-success btn-sm float-right'>Registrar</a>
 				</div>
 				<div class="card-body">
-					<a href="{{ route('people.create') }}" class='btn btn-success btn-round'>Registrar</a>
+					@include('people.partials.info')
 					<div class="table-responsive">
 					<table class="table table-hover table-striped">
 						<thead>

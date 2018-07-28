@@ -19,7 +19,7 @@ class CreatePeopleTable extends Migration
             $table->string('last_name', 100)->comment('Apellido de la persona');
             $table->string('identification_card', 9)->comment('Cédula de identidad de la persona');
             $table->string('phone', 15)->comment('Teléfono de la persona');
-            $table->string('email', 100)->comment('Correo electrónico de la persona');
+            $table->string('email', 100)->unique()->comment('Correo electrónico de la persona');
             $table->integer('user_id')->unsigned()->comment('Identificador del usuario al que pertenece la persona');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();

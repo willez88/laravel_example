@@ -13,6 +13,7 @@
     				</a>
 				</div>
 			</div>
+			@include('people.partials.errors')
 			{!! Form::open($header_person) !!}
 				<div class="card-body">
 					<div class="row">
@@ -53,6 +54,9 @@
 										'title' => 'Indique la cédula de identidad'
 									]
 								) !!}
+								<small class="form-text text-muted">
+									V00000000 ó E00000000
+								</small>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -65,6 +69,9 @@
 										'title' => 'Indique el teléfono'
 									]
 								) !!}
+								<small class="form-text text-muted">
+									+58-416-0000000
+								</small>
 							</div>
 						</div>
 					</div>

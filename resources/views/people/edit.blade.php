@@ -13,6 +13,7 @@
     				</a>
 				</div>
 			</div>
+			@include('people.partials.errors')
 			{!! Form::model($person,$header_person) !!}
 				<div class="card-body">
 					<div class="row">
