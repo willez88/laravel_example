@@ -1,7 +1,7 @@
 # Ejemplo Laravel
 
 Este sistema permite a un usuario registrarse, iniciar sesión, salir, recuperar contraseña.
-También cada usuario pude registrar los siguientes datos de personas:
+También cada usuario puede registrar los siguientes datos de personas:
 
     Nombres
     Apellidos
