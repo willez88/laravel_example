@@ -43,11 +43,6 @@ Entrar a la carpeta php y hacer lo siguiente
 
     ~$ mkdir proyectos_php
 
-Tendremos las carpetas estructuradas de la siguiente manera
-
-    // Servidor de desarrollo
-    Programación/php/proyectos_php/laravel_example
-
 Desde el terminal, moverse a la carpeta proyectos_php y ejecutar
 
     ~$ cd proyectos_php/
@@ -56,10 +51,17 @@ Desde el terminal, moverse a la carpeta proyectos_php y ejecutar
 
     ~$ cd laravel_example/
 
+Tendremos las carpetas estructuradas de la siguiente manera
+
+    // Servidor de desarrollo
+    Programación/php/proyectos_php/laravel_example
+
+Hacer la siguiente configuración
+
+    // Cambia el nombre del archivo
     ~$ cp .env.example .env
 
-Editar las siguientes líneas del archivo .env
-
+    // Editar las siguientes líneas del archivo .env
     DB_CONNECTION=pgsql
     DB_HOST=127.0.0.1
     DB_PORT=5432
