@@ -21,6 +21,17 @@ class Person extends Model
      * @var array $fillable
      */
     protected $fillable = [
-        'first_name', 'last_name', 'identification_card', 'phone', 'email'
+        'first_name', 'last_name', 'identification_card', 'phone', 'email', 'user_id'
     ];
+
+    /**
+     * Método que obtiene el Usuario que tiene asociado una persona
+     *
+     * @author  William Páez (paez.william8 at gmail.com)
+     * @return object Objeto con los registros relacionados al modelo User
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

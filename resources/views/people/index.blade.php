@@ -14,6 +14,7 @@
 					<table class="table table-hover table-striped">
 						<thead>
 							<tr>
+								<th>Prueba</th>
 								<th>Nombres</th>
 								<th>Apellidos</th>
 								<th>Cédula de Identidad</th>
@@ -25,6 +26,7 @@
 						<tbody>
 							@foreach($people as $person)
 								<tr>
+									<td> {{ $person->user->name }} </td>
 									<td> {{ $person->first_name }} </td>
 									<td> {{ $person->last_name }} </td>
 									<td> {{ $person->identification_card }} </td>
