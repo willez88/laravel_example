@@ -15,13 +15,13 @@ Cuando somos un usuario normal del sistema, en el terminal se mostrará el sigui
 
 Cuando accedemos al usuario root del sistema, en el terminal se mostrará el siguiente símbolo: ~#
 
-Probado en Debian 9 y Ubuntu 18.04. Instalar los siguientes programas
+Probado en versiones actualizadas de Debian y Ubuntu. Instalar los siguientes programas
 
     ~# apt install curl git php phppgadmin postgresql
 
 Para instalar npm hacer lo siguiente
 
-    ~# curl -sL https://deb.nodesource.com/setup_10.x | bash -
+    ~# curl -sL https://deb.nodesource.com/setup_11.x | bash -
 
     ~# apt install -y nodejs
 
