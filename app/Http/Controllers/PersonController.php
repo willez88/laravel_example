@@ -26,9 +26,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //error_log(Auth::user()->id);
-        $people = Person::where('user_id', Auth::user()->id)->get();
-        return view('people.index', compact('people'));
+        return view('people.index');
     }
 
     /**
@@ -39,10 +37,8 @@ class PersonController extends Controller
      */
     public function create()
     {
-        $header_person = [
-            'route' => 'people.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form',
-        ];
-        return view('people.create', compact('header_person'));
+
+        return view('people.create');
     }
 
     /**
@@ -67,14 +63,9 @@ class PersonController extends Controller
         $person->identification_card = $request->identification_card;
         $person->phone = $request->phone;
         $person->email = $request->email;
-        $person->user_id = $request->invisible;
+        $person->user_id = Auth::user()->id;
         $person->save();
         return redirect()->route('people.index');
-    }
-
-    public function show()
-    {
-
     }
 
     /**
@@ -86,10 +77,7 @@ class PersonController extends Controller
      */
     public function edit(Person $person)
     {
-        $header_person = [
-            'route' => ['people.update', $person], 'method' => 'PUT', 'role' => 'form', 'class' => 'form',
-        ];
-        return view('people.edit', compact('person','header_person'));
+        return view('people.edit');
     }
 
     /**
@@ -107,14 +95,13 @@ class PersonController extends Controller
             'last_name' => 'required|max:100',
             'identification_card' => 'required|regex:/^[VE][\d]{8}$/u',
             'phone' => 'required|regex:/^\+\d{2}-\d{3}-\d{7}$/u',
-            'email' => 'required|string|email|max:100'
+            'email' => 'required|email|max:100'
         ]);
         $person->first_name  = $request->first_name;
         $person->last_name = $request->last_name;
         $person->identification_card = $request->identification_card;
         $person->phone = $request->phone;
         $person->email = $request->email;
-        $person->user_id = $request->invisible;
         $person->save();
         return redirect()->route('people.index');
     }
@@ -130,5 +117,14 @@ class PersonController extends Controller
     {
         $person->delete();
         return back()->with('info', 'Fue eliminado exitosamente');
+    }
+
+    public function list()
+    {
+        $person = Person::find(9);
+        //error_log($person);
+
+        $people = Person::where('user_id', Auth::user()->id)->get();
+        return $people;
     }
 }

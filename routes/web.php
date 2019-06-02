@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/people', 'PersonController', ['except' => ['show']])->middleware('auth');
+Route::resource('/people', 'PersonController', ['except' => ['show','create','edit']])->middleware('auth');
+Route::get('/people/list', 'PersonController@list')->name('people.list')->middleware('auth');
