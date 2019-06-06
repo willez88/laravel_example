@@ -37,7 +37,6 @@ class PersonController extends Controller
      */
     public function create()
     {
-
         return view('people.create');
     }
 
@@ -65,7 +64,7 @@ class PersonController extends Controller
         $person->email = $request->email;
         $person->user_id = Auth::user()->id;
         $person->save();
-        return redirect()->route('people.index');
+        return;
     }
 
     /**
@@ -103,7 +102,7 @@ class PersonController extends Controller
         $person->phone = $request->phone;
         $person->email = $request->email;
         $person->save();
-        return redirect()->route('people.index');
+        return;
     }
 
     /**
@@ -116,7 +115,7 @@ class PersonController extends Controller
     public function destroy(Person $person)
     {
         $person->delete();
-        return back()->with('info', 'Fue eliminado exitosamente');
+        return;
     }
 
     public function list()

@@ -103,11 +103,6 @@
                             </table>
                         </div>
                     </div>
-                    <div class="row">
-                        <pre>
-                            {{ $data }}
-                        </pre>
-                    </div>
                 </div>
                 <div class="card-footer text-right">
                     <button type="button" class="btn btn-warning rounded-circle" data-toggle="tooltip"
@@ -161,11 +156,9 @@
              */
             addPeople() {
                 if (this.fillPeople.id) {
-                    alert('Actualizar');
     				this.updatePeople();
     			}
                 else {
-                    alert('Crear');
                     axios.post('people', {
                         first_name: this.fillPeople.first_name,
                         last_name: this.fillPeople.last_name,
@@ -197,7 +190,6 @@
             updatePeople() {
                 axios.patch('people/' + this.fillPeople.id, this.fillPeople
                 ).then(response => {
-                    alert('Prueba');
                     this.getPeople();
                     this.reset();
                 }).catch(error => {
@@ -213,9 +205,13 @@
             },
 
             deletePeople(person) {
-    			axios.delete('people/' + person.id).then(response => {
-    				this.getPeople();
-    			});
+                if (confirm('¿Está seguro que desea eliminar el registro?'))
+                {
+        			axios.delete('people/' + person.id).then(response => {
+        				this.getPeople();
+                        this.reset();
+        			});
+                }
     		},
 
             /**

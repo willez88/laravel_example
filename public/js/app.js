@@ -49248,11 +49248,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {
@@ -49300,10 +49295,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             if (this.fillPeople.id) {
-                alert('Actualizar');
                 this.updatePeople();
             } else {
-                alert('Crear');
                 axios.post('people', {
                     first_name: this.fillPeople.first_name,
                     last_name: this.fillPeople.last_name,
@@ -49337,7 +49330,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             axios.patch('people/' + this.fillPeople.id, this.fillPeople).then(function (response) {
-                alert('Prueba');
                 _this3.getPeople();
                 _this3.reset();
             }).catch(function (error) {
@@ -49354,9 +49346,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deletePeople: function deletePeople(person) {
             var _this4 = this;
 
-            axios.delete('people/' + person.id).then(function (response) {
-                _this4.getPeople();
-            });
+            if (confirm('¿Está seguro que desea eliminar el registro?')) {
+                axios.delete('people/' + person.id).then(function (response) {
+                    _this4.getPeople();
+                    _this4.reset();
+                });
+            }
         },
 
 
@@ -49684,16 +49679,6 @@ var render = function() {
                 0
               )
             ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("pre", [
-            _vm._v(
-              "                        " +
-                _vm._s(_vm.$data) +
-                "\n                    "
-            )
           ])
         ])
       ]),

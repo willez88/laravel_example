@@ -41,11 +41,11 @@ Entrar a la carpeta php y hacer lo siguiente
 
     ~$ cd php/
 
-    ~$ mkdir proyectos_php
+    ~$ mkdir proyectos_laravel
 
-Desde el terminal, moverse a la carpeta proyectos_php y ejecutar
+Desde el terminal, moverse a la carpeta proyectos_laravel y ejecutar
 
-    ~$ cd proyectos_php/
+    ~$ cd proyectos_laravel/
 
     ~$ git clone https://github.com/willez88/laravel_example.git
 
@@ -54,7 +54,7 @@ Desde el terminal, moverse a la carpeta proyectos_php y ejecutar
 Tendremos las carpetas estructuradas de la siguiente manera
 
     // Servidor de desarrollo
-    Programación/php/proyectos_php/laravel_example
+    Programación/php/proyectos_laravel/laravel_example
 
 Hacer la siguiente configuración
 
@@ -69,13 +69,13 @@ Hacer la siguiente configuración
     DB_USERNAME=admin
     DB_PASSWORD=123
 
-Instalar las dependencias de css y js: moverse a la carpeta public y ejecutar
-
-    ~$ cd public/
+Instalar las dependencias de css y js
 
     ~$ npm install
 
-    ~$ cd ../
+Cada vez que se modifique código de un componente vue hay que compilar
+
+    ~$ npm run dev
 
 Instalar los requerimientos de composer.json
 
