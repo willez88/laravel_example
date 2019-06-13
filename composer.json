@@ -12,6 +12,7 @@
         "laravelcollective/html": "^5.8.0"
     },
     "require-dev": {
+        "beyondcode/laravel-er-diagram-generator": "^1.2",
         "filp/whoops": "^2.3.1",
         "fzaninotto/faker": "^1.8.0",
         "mockery/mockery": "^1.2.2",

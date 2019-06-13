@@ -17,7 +17,7 @@ Cuando accedemos al usuario root del sistema, en el terminal se mostrará el sig
 
 Probado en versiones actualizadas de Debian y Ubuntu. Instalar los siguientes programas
 
-    ~# apt install curl git php phppgadmin postgresql
+    ~# apt install curl git graphviz graphviz-dev php phppgadmin postgresql
 
 Para instalar npm hacer lo siguiente
 
@@ -121,6 +121,10 @@ Correr el servidor de laravel
 Poner en el navegador la url que sale en el terminal para entrar el sistema
 
 __Algunos comandos básicos__
+
+Generación del diagrama entidad-relación
+
+    ~$ php artisan generate:erd laravel_example.svg --format=svg
 
 Crear modelo, migración y controlador
 
