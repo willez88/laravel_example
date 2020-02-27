@@ -21,7 +21,7 @@ Probado en versiones actualizadas de Debian y Ubuntu. Instalar los siguientes pr
 
 Para instalar npm hacer lo siguiente
 
-    ~# curl -sL https://deb.nodesource.com/setup_11.x | bash -
+    ~# curl -sL https://deb.nodesource.com/setup_13.x | bash -
 
     ~# apt install -y nodejs
 
