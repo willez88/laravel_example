@@ -19,7 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {!! Html::style('node_modules/@fortawesome/fontawesome-free/css/all.min.css') !!}
+
     <style>
         html {
             position: relative;
