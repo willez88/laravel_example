@@ -130,6 +130,6 @@ Crear modelo, migración y controlador
 
     ~$ php artisan make:model -cm Nombre_Modelo
 
-Las palntillas blade se crean en la siguiente carpeta
+Las plantillas blade se crean en la siguiente carpeta
 
     resources/views/
