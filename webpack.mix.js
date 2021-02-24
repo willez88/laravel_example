@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -10,9 +10,12 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+/** Copia el archivo bootbox a la carpeta public */
+mix.copy('node_modules/bootbox/dist/bootbox.min.js', 'public/js/bootbox.min.js');
 
 mix.js([
-        'resources/assets/js/app.js',
+        'resources/js/app.js',
         'node_modules/@fortawesome/fontawesome-free/js/fontawesome.min.js'
     ], 'public/js')
-    .sass('resources/assets/sass/app.scss', 'public/css');
+    .vue()
+    .sass('resources/sass/app.scss', 'public/css');

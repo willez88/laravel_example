@@ -21,7 +21,11 @@ Probado en versiones actualizadas de Debian y Ubuntu. Instalar los siguientes pr
 
 Para instalar npm hacer lo siguiente
 
-    ~# curl -sL https://deb.nodesource.com/setup_13.x | bash -
+    // Ubuntu
+    ~$ curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+
+    // Debian
+    ~# curl -sL https://deb.nodesource.com/setup_lts.x | bash -
 
     ~# apt install -y nodejs
 
@@ -79,7 +83,7 @@ Cada vez que se modifique código de un componente vue hay que compilar
 
 Instalar los requerimientos de composer.json
 
-    ~$ /home/tu-usuario/composer.phar install
+    ~$ composer install
 
 Crear la base de datos para __laravel_example__ usando PostgresSQL
 
@@ -126,10 +130,25 @@ Generación del diagrama entidad-relación
 
     ~$ php artisan generate:erd laravel_example.svg --format=svg
 
-Crear modelo, migración y controlador
+Crear controlador de recurso, migración y seeder para el modelo
 
-    ~$ php artisan make:model -cm Nombre_Modelo
+    ~$ php artisan make:model -cmrs Nombre_Modelo
 
 Las plantillas blade se crean en la siguiente carpeta
 
     resources/views/
+
+__Nota__
+
+    A partir de Laravel 8 se usa el framework Tailwind y tiene para elegir entre Inertia.js y Livewire.
+
+    Para seguir usando Laravel con la estructura de Bootstrap y Vue.js, basta con ejecutar los siguientes comandos
+    en una versión limpia de Laravel 8:
+
+    composer require laravel/ui
+
+    php artisan ui vue --auth
+
+    Con esto se genera la estructura completa de gestión de usuario como la tenía Laravel 7.
+
+    Este proyecto seguirá usando el paquete laravel/ui mientras tenga soporte.
