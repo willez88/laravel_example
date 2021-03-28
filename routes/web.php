@@ -73,3 +73,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::resource('people', App\Http\Controllers\PersonController::class);
 Route::get('people/show/vue-list', [App\Http\Controllers\PersonController::class, 'vueList']);
+
+Route::resource('calendars', App\Http\Controllers\CalendarController::class);
+Route::resource('events', App\Http\Controllers\EventController::class);

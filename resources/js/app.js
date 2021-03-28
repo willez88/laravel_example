@@ -115,6 +115,16 @@ Vue.component('person', () => import(
 );
 
 /**
+ * Componente calendario
+ *
+ * @author William Páez <paez.william8@gmail.com>
+ */
+Vue.component('calendar', () => import(
+    /* webpackChunkName: "calendar" */
+    './components/CalendarComponent.vue')
+);
+
+/**
  * Opciones de configuración global para utilizar en todos los componentes vuejs de la aplicación
  *
  * @author William Páez <paez.william8@gmail.com>
