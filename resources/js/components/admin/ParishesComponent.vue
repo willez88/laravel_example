@@ -25,18 +25,26 @@
                             <div class="col-md-6">
         						<div class="form-group is-required">
                                     <label>País:</label>
-									<select2 :options="countries" @input="getEstates"
-                                        v-model="record.country_id">
-                                    </select2>
+									<v-select
+										label="text"
+										:options="countries"
+										:reduce="country => country.id"
+										@input="getEstates"
+										v-model="record.country_id">
+									</v-select>
         							<input type="hidden" v-model="record.id">
         	                    </div>
                             </div>
                             <div class="col-md-6">
         						<div class="form-group is-required">
                                     <label>Estado:</label>
-									<select2 :options="estates" @input="getMunicipalities"
-                                        v-model="record.estate_id">
-                                    </select2>
+									<v-select
+										label="text"
+										:options="estates"
+										:reduce="estate => estate.id"
+										@input="getMunicipalities"
+										v-model="record.estate_id">
+									</v-select>
         	                    </div>
                             </div>
                         </div>
@@ -44,9 +52,12 @@
                             <div class="col-md-6">
         						<div class="form-group is-required">
                                     <label>Municipio:</label>
-									<select2 :options="municipalities" @input="getParishes"
-                                        v-model="record.municipality_id">
-                                    </select2>
+									<v-select
+										label="text"
+										:options="municipalities"
+										:reduce="municipality => municipality.id"
+										v-model="record.municipality_id">
+									</v-select>
         	                    </div>
                             </div>
                             <div class="col-md-6">
@@ -75,21 +86,40 @@
 	                	</div>
 	                </div>
 	                <div class="modal-body modal-table">
-	                	<v-client-table :columns="columns" :data="records" :options="table_options">
-	                		<div slot="id" slot-scope="props" class="text-center">
-	                			<button @click="initUpdate(props.row.id, $event)"
-		                				class="btn btn-warning btn-xs btn-icon btn-action"
-		                				title="Modificar registro" data-toggle="tooltip" type="button">
-		                			<i class="fas fa-edit"></i>
-		                		</button>
-		                		<button @click="deleteRecord(props.row.id, 'parishes')"
-										class="btn btn-danger btn-xs btn-icon btn-action"
-										title="Eliminar registro" data-toggle="tooltip"
-										type="button">
-									<i class="fas fa-trash"></i>
-								</button>
-	                		</div>
-	                	</v-client-table>
+	                	<div class="table-responsive-sm">
+							<table class="table table-striped">
+								<thead>
+									<tr class="text-center">
+										<th scope="col">País</th>
+										<th scope="col">Estado</th>
+										<th scope="col">Municipio</th>
+										<th scope="col">Código</th>
+										<th scope="col">Nombre</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="record in records">
+										<td>{{ record.municipality.estate.country.name }}</td>
+										<td>{{ record.municipality.estate.name }}</td>
+										<td>{{ record.municipality.name }}</td>
+										<td>{{ record.code }}</td>
+										<td>{{ record.name }}</td>
+										<td class="text-center">
+											<button @click="initUpdate(record.id, $event)"
+												class="btn btn-warning btn-xs btn-icon btn-action"
+												title="Modificar registro" data-toggle="tooltip" type="button">
+												<i class="fas fa-edit"></i>
+											</button>
+											<button @click="deleteRecord(record.id, 'estates')"
+												class="btn btn-danger btn-xs btn-icon btn-action" title="Eliminar registro"
+												data-toggle="tooltip" type="button">
+												<i class="fas fa-trash"></i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 	                </div>
 		        </div>
 		    </div>

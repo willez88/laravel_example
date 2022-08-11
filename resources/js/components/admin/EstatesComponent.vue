@@ -25,7 +25,12 @@
                             <div class="col-md-4">
         						<div class="form-group is-required">
                                     <label>País:</label>
-									<select2 :options="countries" v-model="record.country_id"></select2>
+									<v-select
+										label="text"
+										:options="countries"
+										:reduce="country => country.id"
+										v-model="record.country_id">
+									</v-select>
         							<input type="hidden" v-model="record.id">
         	                    </div>
                             </div>
@@ -53,21 +58,36 @@
 	                	</div>
 	                </div>
 	                <div class="modal-body modal-table">
-	                	<v-client-table :columns="columns" :data="records" :options="table_options">
-	                		<div slot="id" slot-scope="props" class="text-center">
-	                			<button @click="initUpdate(props.row.id, $event)"
-		                				class="btn btn-warning btn-xs btn-icon btn-action"
-		                				title="Modificar registro" data-toggle="tooltip" type="button">
-		                			<i class="fas fa-edit"></i>
-		                		</button>
-		                		<button @click="deleteRecord(props.row.id, 'estates')"
-										class="btn btn-danger btn-xs btn-icon btn-action"
-										title="Eliminar registro" data-toggle="tooltip"
-										type="button">
-									<i class="fas fa-trash"></i>
-								</button>
-	                		</div>
-	                	</v-client-table>
+	                	<div class="table-responsive-sm">
+							<table class="table table-striped">
+								<thead>
+									<tr class="text-center">
+										<th scope="col">País</th>
+										<th scope="col">Código</th>
+										<th scope="col">Nombre</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="record in records">
+										<td>{{ record.country.name }}</td>
+										<td>{{ record.code }}</td>
+										<td>{{ record.name }}</td>
+										<td class="text-center">
+											<button @click="initUpdate(record.id, $event)"
+												class="btn btn-warning btn-xs btn-icon btn-action"
+												title="Modificar registro" data-toggle="tooltip" type="button">
+												<i class="fas fa-edit"></i>
+											</button>
+											<button @click="deleteRecord(record.id, 'estates')"
+												class="btn btn-danger btn-xs btn-icon btn-action" title="Eliminar registro"
+												data-toggle="tooltip" type="button">
+												<i class="fas fa-trash"></i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 	                </div>
 		        </div>
 		    </div>
@@ -88,7 +108,6 @@
 				errors: [],
 				records: [],
                 countries: [],
-				columns: ['country.name', 'name', 'code', 'id'],
 			}
 		},
 		methods: {
@@ -107,20 +126,6 @@
 			},
 		},
 		created() {
-			this.table_options.headings = {
-				'country.name': 'País',
-                'name': 'Nombre',
-                'code': 'Código',
-				'id': 'Acción',
-			};
-			this.table_options.sortable = ['country.name', 'name', 'code'];
-			this.table_options.filterable = ['country.name', 'name', 'code'];
-			this.table_options.columnsClasses = {
-				'country.name': 'col-md-4',
-                'name': 'col-md-4',
-                'code': 'col-md-2',
-				'id': 'col-md-2',
-			};
 			this.getCountries();
 		},
 	};

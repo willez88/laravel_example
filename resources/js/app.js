@@ -4,12 +4,25 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import './bootstrap';
+import '../sass/app.scss';
+import '../css/app.css';
 
-window.Vue = require('vue').default;
+import vSelect from 'vue-select';
+import swal from 'sweetalert';
 
-import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-Vue.use(ClientTable);
+import { createApp } from 'vue';
+
+/**
+ * Next, we will create a fresh Vue application instance. You may then begin
+ * registering components with the application instance so they are ready
+ * to use in your application's views. An example is included for you.
+ */
+
+const app = createApp({});
+
+import ExampleComponent from './components/ExampleComponent.vue';
+app.component('example-component', ExampleComponent);
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,100 +32,80 @@ Vue.use(ClientTable);
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Object.entries(import.meta.globEager('./**/*.vue')).forEach(([path, definition]) => {
+//     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
+// });
 
 /**
  * Componente genérico para el uso de botones en formularios de ventanas modales
  *
- * @author Roldan Vargas <roldandvg@gmail.com>
+ * @author William Páez <paez.william8@gmail.com>
  */
-Vue.component('modal-form-buttons', () => import(
-    /* webpackChunkName: "modal-form-buttons" */
-    './components/admin/ButtonsFormModalComponent.vue'
-));
+import ButtonsFormModalComponent from './components/admin/ButtonsFormModalComponent.vue';
+app.component('modal-form-buttons', ButtonsFormModalComponent);
 
 /**
  * Componente genérico para el uso de listas desplegables con select2 y selects dependientes
  *
- * @author Roldan Vargas <roldandvg@gmail.com>
+ * @author William Páez <paez.william8@gmail.com>
  */
-Vue.component('select2', () => import(
-    /* webpackChunkName: "selects" */
-    './components/admin/SelectsComponent.vue'
-));
+app.component('v-select', vSelect);
 
 /**
  * Componente para listar, crear, actualizar y borrar datos de países
  *
  * @author William Páez <paez.william8@gmail.com>
  */
-Vue.component('countries', () => import(
-    /* webpackChunkName: "countries" */
-    './components/admin/CountriesComponent.vue'
-));
+import CountriesComponent from './components/admin/CountriesComponent.vue';
+app.component('countries', CountriesComponent);
 
 /**
  * Componente para listar, crear, actualizar y borrar datos de estados
  *
  * @author William Páez <paez.william8@gmail.com>
  */
-Vue.component('estates', () => import(
-    /* webpackChunkName: "estates" */
-    './components/admin/EstatesComponent.vue'
-));
+import EstatesComponent from './components/admin/EstatesComponent.vue';
+app.component('estates', EstatesComponent);
 
 /**
  * Componente para listar, crear, actualizar y borrar datos de municipios
  *
  * @author William Páez <paez.william8@gmail.com>
  */
-Vue.component('municipalities', () => import(
-    /* webpackChunkName: "municipalities" */
-    './components/admin/MunicipalitiesComponent.vue'
-));
+import MunicipalitiesComponent from './components/admin/MunicipalitiesComponent.vue';
+app.component('municipalities', MunicipalitiesComponent);
 
 /**
  * Componente para listar, crear, actualizar y borrar datos de ciudades
  *
  * @author William Páez <paez.william8@gmail.com>
  */
-Vue.component('cities', () => import(
-    /* webpackChunkName: "cities" */
-    './components/admin/CitiesComponent.vue'
-));
+import CitiesComponent from './components/admin/CitiesComponent.vue';
+app.component('cities', CitiesComponent);
 
 /**
  * Componente para listar, crear, actualizar y borrar datos de parroquias
  *
  * @author William Páez <paez.william8@gmail.com>
  */
-Vue.component('parishes', () => import(
-    /* webpackChunkName: "parishes" */
-    './components/admin/ParishesComponent.vue'
-));
+import ParishesComponent from './components/admin/ParishesComponent.vue';
+app.component('parishes', ParishesComponent);
 
 /**
  * Componente para mostrar listado de personas
  *
  * @author William Páez <paez.william8@gmail.com>
  */
-Vue.component('person-list', () => import(
-    /* webpackChunkName: "person-list" */
-    './components/PersonListComponent.vue')
-);
+import PersonListComponent from './components/PersonListComponent.vue';
+app.component('person-list', PersonListComponent);
 
 /**
  * Componente para registrar o actualizar personas
  *
  * @author William Páez <paez.william8@gmail.com>
  */
-Vue.component('person', () => import(
-    /* webpackChunkName: "person" */
-    './components/PersonComponent.vue')
-);
+ import PersonComponent from './components/PersonComponent.vue';
+ app.component('person', PersonComponent);
 
 /**
  * Opciones de configuración global para utilizar en todos los componentes vuejs de la aplicación
@@ -120,7 +113,7 @@ Vue.component('person', () => import(
  * @author William Páez <paez.william8@gmail.com>
  * @param  {object} methods Métodos generales a implementar en CRUDS
  */
-Vue.mixin({
+app.mixin({
     data() {
         return {
             /**
@@ -448,51 +441,50 @@ Vue.mixin({
 		/**
 		 * Método para la eliminación de registros
 		 *
-		 * @author Roldan Vargas <roldandvg@gmail.com>
+		 * @author William Páez <paez.william8@gmail.com>
 		 *
 		 * @param  {integer} id    ID del Elemento seleccionado para su eliminación
 		 * @param  {string}  url   Ruta que ejecuta la acción para eliminar un registro
 		 */
 		deleteRecord(id, url) {
 			const vm = this;
+			swal("Good job!", "You clicked the button!", "success");
 			/** @type {string} URL que atiende la petición de eliminación del registro */
 			var url = (url)?url:vm.route_delete;
 			/*url = (!url.includes('http://') || !url.includes('http://'))
 				  ? `${window.app_url}${(url.startsWith('/'))?'':'/'}${url}` : url;*/
 
-			bootbox.confirm({
-				title: "¿Eliminar registro?",
-				message: "¿Esta seguro de eliminar este registro?",
-				buttons: {
-					cancel: {
-						label: '<i class="fa fa-times"></i> Cancelar'
-					},
-					confirm: {
-						label: '<i class="fa fa-check"></i> Confirmar'
-					}
-				},
-				callback: function (result) {
-					if (result) {
-						/** @type {object} Objeto con los datos del registro a eliminar */
-						let recordDelete = JSON.parse(JSON.stringify(vm.records.filter((rec) => {
-							return rec.id === id;
-						})[0]));
+			swal({
+				title: "¿Está seguro?",
+				text: "Una vez borrado, ud no podra recuperar este dato!",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			}).then((willDelete) => {
+				if (willDelete) {
+					/** @type {object} Objeto con los datos del registro a eliminar */
+					let recordDelete = JSON.parse(JSON.stringify(vm.records.filter((rec) => {
+						return rec.id === id;
+					})[0]));
 
-						axios.delete(`${url}${url.endsWith('/')?'':'/'}${recordDelete.id}`).then(response => {
-							if (typeof(response.data.error) !== "undefined") {
-								/** Muestra un mensaje de error si sucede algún evento en la eliminación */
-								vm.showMessage('custom', 'Alerta!', 'warning', 'screen-error', response.data.message);
-								return false;
-							}
-							/** @type {array} Arreglo de registros filtrado sin el elemento eliminado */
-							vm.records = JSON.parse(JSON.stringify(vm.records.filter((rec) => {
-								return rec.id !== id;
-							})));
-							vm.showMessage('destroy');
-						}).catch(error => {
-							vm.logs('mixins.js', 498, error, 'deleteRecord');
-						});
-					}
+					axios.delete(`${url}${url.endsWith('/')?'':'/'}${id}`).then(response => {
+						if (typeof(response.data.error) !== "undefined") {
+							/** Muestra un mensaje de error si sucede algún evento en la eliminación */
+							vm.showMessage('custom', 'Alerta!', 'warning', 'screen-error', response.data.message);
+							return false;
+						}
+						/** @type {array} Arreglo de registros filtrado sin el elemento eliminado */
+						vm.records = JSON.parse(JSON.stringify(vm.records.filter((rec) => {
+							return rec.id !== id;
+						})));
+					}).catch(error => {
+						vm.logs('mixins.js', 498, error, 'deleteRecord');
+					});
+					swal("El dato ha sido eliminado!", {
+						icon: "success",
+					});
+				} else {
+					swal("Se canceló la operación!");
 				}
 			});
 		},
@@ -568,11 +560,9 @@ Vue.mixin({
 });
 
 /**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
+ * Finally, we will attach the application instance to a HTML element with
+ * an "id" attribute of "app". This element is included with the "auth"
+ * scaffolding. Otherwise, you will need to add an element yourself.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+app.mount('#app');

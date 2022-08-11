@@ -1,25 +1,39 @@
 <template>
     <div>
-        <v-client-table :columns="columns" :data="records" :options="table_options">
-    		<div slot="id" slot-scope="props" class="text-center">
-    			<button @click="showInfo(props.row.id)" v-if="route_show"
-        				class="btn btn-info btn-xs btn-icon btn-action btn-tooltip"
-        				title="Ver registro" data-toggle="tooltip" data-placement="bottom" type="button">
-        			<i class="fas fa-eye"></i>
-        		</button>
-    			<button @click="editForm(props.row.id)" v-if="!props.row.assigned"
-        				class="btn btn-warning btn-xs btn-icon btn-action btn-tooltip"
-        				title="Modificar registro" data-toggle="tooltip" data-placement="bottom" type="button">
-        			<i class="fas fa-edit"></i>
-        		</button>
-        		<button @click="deleteRecord(props.index, '')"
-    					class="btn btn-danger btn-xs btn-icon btn-action btn-tooltip"
-    					title="Eliminar registro" data-toggle="tooltip" data-placement="bottom"
-    					type="button">
-    				<i class="fas fa-trash"></i>
-    			</button>
-    		</div>
-    	</v-client-table>
+        <table class="table table-striped">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="record in records">
+                    <td>{{ record.first_name }}</td>
+                    <td>{{ record.last_name }}</td>
+                    <td>{{ record.email }}</td>
+                    <td class="text-center">
+                        <button @click="showInfo(record.id)" v-if="route_show"
+                            class="btn btn-info btn-xs btn-icon btn-action btn-tooltip" title="Ver registro"
+                            data-toggle="tooltip" data-placement="bottom" type="button">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button @click="editForm(record.id)"
+                            class="btn btn-warning btn-xs btn-icon btn-action btn-tooltip" title="Modificar registro"
+                            data-toggle="tooltip" data-placement="bottom" type="button">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button @click="deleteRecord(record.id, '')"
+                            class="btn btn-danger btn-xs btn-icon btn-action btn-tooltip" title="Eliminar registro"
+                            data-toggle="tooltip" data-placement="bottom" type="button">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <div class="modal fade" tabindex="-1" role="dialog" id="show_person">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -125,20 +139,7 @@
 		},
 
         created() {
-			this.table_options.headings = {
-                'first_name': 'Nombres',
-                'last_name': 'Apellidos',
-				'email': 'Correo Electrónico',
-				'id': 'Acción',
-			};
-            this.table_options.sortable = ['first_name', 'last_name'];
-			this.table_options.filterable = ['first_name', 'last_name'];
-            this.table_options.columnsClasses = {
-				'first_name': 'col-md-4',
-                'last_name': 'col-md-4',
-                'email': 'col-md-2',
-				'id': 'col-md-2',
-			};
+			
 		},
 
 		mounted() {
@@ -164,7 +165,7 @@
                     $('#parish').val(this.record.parish.name);
 				});
                 $('#show_person').modal('show');
-            }
+            },
         }
     };
 </script>

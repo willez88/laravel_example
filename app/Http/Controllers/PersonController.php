@@ -96,7 +96,7 @@ class PersonController extends Controller
             'parish_id' => $request->parish_id,
             'user_id' => auth()->user()->id
         ]);
-        return response()->json(['record' => $person, 'message' => 'Success'], 200);
+        return response()->json(['record' => $person, 'redirect' => '/people'], 200);
     }
 
     /**
@@ -180,7 +180,7 @@ class PersonController extends Controller
         $person->address = $request->address;
         $person->parish_id = $request->parish_id;
         $person->save();
-        return response()->json(['message' => 'Success'], 200);
+        return response()->json(['redirect' => '/people'], 200);
     }
 
     /**
@@ -205,7 +205,7 @@ class PersonController extends Controller
             abort(403, 'El usuario no tiene los permisos para entrar a esta página.');
         }
         $person->delete();
-        return response()->json(['record' => $person, 'message' => 'Success'], 200);
+        return response()->json(['record' => $person, 'redirect' => '/people'], 200);
     }
 
     /**

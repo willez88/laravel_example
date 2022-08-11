@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4>Personas</h4>
-                    <div class="text-right">
+                    <div class="text-end">
                         @include('buttons.previous', ['route' => url()->previous()])
                         @include('buttons.new', ['route' => route('people.create')])
                     </div>

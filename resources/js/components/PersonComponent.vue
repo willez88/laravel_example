@@ -64,9 +64,13 @@
     						<div class="col-md-4">
     							<div class="form-group is-required">
                                     <label>País:</label>
-									<select2 :options="countries" @input="getEstates"
-                                        v-model="record.country_id">
-                                    </select2>
+									<v-select
+										label="text"
+										:options="countries"
+										:reduce="country => country.id"
+										@input="getEstates"
+										v-model="record.country_id">
+									</v-select>
     							</div>
     						</div>
     					</div>
@@ -74,25 +78,36 @@
     						<div class="col-md-4">
     							<div class="form-group is-required">
                                     <label>Estado:</label>
-									<select2 :options="estates" @input="getMunicipalities"
-                                        v-model="record.estate_id">
-                                    </select2>
+									<v-select
+										label="text"
+										:options="estates"
+										:reduce="estate => estate.id"
+										@input="getMunicipalities"
+										v-model="record.estate_id">
+									</v-select>
     							</div>
     						</div>
     						<div class="col-md-4">
     							<div class="form-group is-required">
                                     <label>Municipio:</label>
-									<select2 :options="municipalities" @input="getParishes"
-                                        v-model="record.municipality_id">
-                                    </select2>
+									<v-select
+										label="text"
+										:options="municipalities"
+										:reduce="municipalities => municipalities.id"
+										@input="getParishes"
+										v-model="record.municipality_id">
+									</v-select>
     							</div>
     						</div>
     						<div class="col-md-4">
     							<div class="form-group is-required">
                                     <label>Parroquia:</label>
-									<select2 :options="parishes"
-                                        v-model="record.parish_id">
-                                    </select2>
+									<v-select
+										label="text"
+										:options="parishes"
+										:reduce="parish => parish.id"
+										v-model="record.parish_id">
+									</v-select>
     							</div>
     						</div>
     					</div>
@@ -184,6 +199,10 @@
                     parish: '',
 				};
 			},
+
+			prueba(v) {
+				console.log(v);
+			}
         },
         created() {
             this.getCountries();
