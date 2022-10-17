@@ -22,10 +22,10 @@ Probado en versiones actualizadas de Debian y Ubuntu. Instalar los siguientes pr
 Para instalar npm hacer lo siguiente
 
     // Ubuntu
-    ~$ curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+    ~# curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
 
     // Debian
-    ~# curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+    ~# curl -fsSL https://deb.nodesource.com/setup_current.x | bash -
 
     ~# apt install -y nodejs
 
@@ -110,13 +110,17 @@ Puedes crear la base de datos usando la interfaz gráfica phppgadmin
 
     // Nombre de la base de datos: laravel_example
 
-Crear la clave interna que laravel usa
+Generar la clave interna de laravel
 
     ~$ php artisan key:generate
 
 Crear las tablas en la base de datos
 
     ~$ php artisan migrate
+
+Ejecutar los seeders
+
+    ~$ php artisan db:seed
 
 Correr el servidor de laravel
 
@@ -134,8 +138,7 @@ __Nota__
 
     A partir de Laravel 8 se usa el framework Tailwind y tiene para elegir entre Inertia.js y Livewire.
 
-    Para seguir usando Laravel con la estructura de Bootstrap y Vue.js, basta con ejecutar los siguientes comandos
-    en una versión limpia de Laravel:
+    Para seguir usando Laravel con la estructura de Bootstrap y Vue.js, basta con ejecutar los siguientes comandos en una versión limpia de Laravel:
 
     composer require laravel/ui
 

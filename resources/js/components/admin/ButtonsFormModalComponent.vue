@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button type="button" class="btn btn-default btn-sm btn-round btn-modal-close" @click="clearFilters" data-dismiss="modal">
+        <button type="button" class="btn btn-default btn-sm btn-round btn-modal-close" data-dismiss="modal">
             Cerrar
         </button>
         <button type="button" @click="reset()" class="btn btn-warning btn-sm btn-round btn-modal btn-modal-clear">
@@ -42,7 +42,7 @@
                 this.$parent.createRecord(this.saveRoute);
             },
             /**
-             * Reinicia los valores de los filtros de consulta
+             * Reinicia los valores de los filtros de consulta (deprecated)
              *
              * @method clearFilters
              *
