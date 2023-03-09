@@ -29,7 +29,7 @@
 										label="text"
 										:options="countries"
 										:reduce="country => country.id"
-										@input="getEstates"
+										@option:selected="getEstates"
 										v-model="record.country_id">
 									</v-select>
         							<input type="hidden" v-model="record.id">
@@ -89,12 +89,12 @@
 										<td>{{ record.code }}</td>
 										<td>{{ record.name }}</td>
 										<td class="text-center">
-											<button @click="initUpdate(record.id, $event)"
+											<button @click="getMunicipality(record.id)"
 												class="btn btn-warning btn-xs btn-icon btn-action"
 												title="Modificar registro" data-toggle="tooltip" type="button">
 												<i class="fas fa-edit"></i>
 											</button>
-											<button @click="deleteRecord(record.id, 'estates')"
+											<button @click="deleteRecord(record.id, 'municipalities')"
 												class="btn btn-danger btn-xs btn-icon btn-action" title="Eliminar registro"
 												data-toggle="tooltip" type="button">
 												<i class="fas fa-trash"></i>
@@ -142,6 +142,24 @@
                     country_id: '',
                     estate_id: '',
 				};
+			},
+
+			/**
+			 * Método que obtiene los datos de un registro en específico
+			 *
+			 * @author William Páez <paez.william8@gmail.com>
+			 */
+			getMunicipality(id) {
+				const vm = this;
+				axios.get(
+					`/admin/municipalities/${id}`
+				).then(response => {
+					vm.record = response.data.record;
+					vm.record.country_id = response.data.record.estate.country.id;
+					vm.record.estate_id = response.data.record.estate.id;
+					vm.getCountries();
+					vm.getEstates();
+				});
 			},
 		},
 		created() {

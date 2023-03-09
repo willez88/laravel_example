@@ -73,7 +73,7 @@
 										<td>{{ record.code }}</td>
 										<td>{{ record.name }}</td>
 										<td class="text-center">
-											<button @click="initUpdate(record.id, $event)"
+											<button @click="getEstate(record.id)"
 												class="btn btn-warning btn-xs btn-icon btn-action"
 												title="Modificar registro" data-toggle="tooltip" type="button">
 												<i class="fas fa-edit"></i>
@@ -123,6 +123,22 @@
                     code: '',
                     country_id: '',
 				};
+			},
+
+			/**
+			 * Método que obtiene los datos de un registro en específico
+			 *
+			 * @author William Páez <paez.william8@gmail.com>
+			 */
+			 getEstate(id) {
+				const vm = this;
+				axios.get(
+					`/admin/estates/${id}`
+				).then(response => {
+					vm.record = response.data.record;
+					vm.record.country_id = response.data.record.estate.country.id;
+					vm.getCountries();
+				});
 			},
 		},
 		created() {

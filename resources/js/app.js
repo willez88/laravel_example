@@ -478,7 +478,8 @@ app.mixin({
 							return rec.id !== id;
 						})));
 					}).catch(error => {
-						vm.logs('mixins.js', 498, error, 'deleteRecord');
+						console.error('Error eliminando dato')
+						// vm.logs('mixins.js', 498, error, 'deleteRecord');
 					});
 					swal("El dato ha sido eliminado!", {
 						icon: "success",

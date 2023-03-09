@@ -134,7 +134,6 @@
 			return {
 				records: [],
                 record: [],
-				columns: ['first_name', 'last_name', 'email', 'id'],
 			}
 		},
 

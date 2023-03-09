@@ -25,27 +25,27 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource(
         'settings',
         App\Http\Controllers\SettingController::class,
-        ['except' => ['create','store','edit','update','show','destroy']]
+        ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]
     );
 
     Route::resource(
         'countries',
         App\Http\Controllers\CountryController::class,
-        ['except' => ['create','show', 'edit']]
+        ['except' => ['create', 'edit']]
     );
     Route::get('get-countries', [App\Http\Controllers\CountryController::class, 'getCountries']);
 
     Route::resource(
         'estates',
         App\Http\Controllers\EstateController::class,
-        ['except' => ['create','show', 'edit']]
+        ['except' => ['create', 'edit']]
     );
     Route::get('get-estates/{country_id}', [App\Http\Controllers\EstateController::class, 'getEstates']);
 
     Route::resource(
         'municipalities',
         App\Http\Controllers\MunicipalityController::class,
-        ['except' => ['create','show', 'edit']]
+        ['except' => ['create', 'edit']]
     );
     Route::get(
         'get-municipalities/{estate_id}',
@@ -56,13 +56,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource(
         'cities',
         App\Http\Controllers\CityController::class,
-        ['except' => ['create','show', 'edit']]
+        ['except' => ['create', 'edit']]
     );
 
     Route::resource(
         'parishes',
         App\Http\Controllers\ParishController::class,
-        ['except' => ['create','show', 'edit']]
+        ['except' => ['create', 'edit']]
     );
     Route::get(
         'get-parishes/{municipality_id}',

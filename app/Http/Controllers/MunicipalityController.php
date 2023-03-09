@@ -93,14 +93,20 @@ class MunicipalityController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra los datos de un registro en específico
      *
-     * @param  \App\Models\Municipality  $municipality
-     * @return \Illuminate\Http\Response
+     * @method show
+     *
+     * @author William Páez <paez.william8@gmail.com>
+     *
+     * @param integer $id Identificador del registro
+     *
+     * @return Renderable Json con el objeto
      */
-    public function show(Municipality $municipality)
+    public function show($id)
     {
-        //
+        $municipality = Municipality::where('id', $id)->with(['estate'])->first();
+        return response()->json(['record' => $municipality], 200);
     }
 
     /**

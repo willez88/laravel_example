@@ -29,7 +29,7 @@
 										label="text"
 										:options="countries"
 										:reduce="country => country.id"
-										@input="getEstates"
+										@option:selected="getEstates"
 										v-model="record.country_id">
 									</v-select>
         							<input type="hidden" v-model="record.id">
@@ -42,7 +42,7 @@
 										label="text"
 										:options="estates"
 										:reduce="estate => estate.id"
-										@input="getMunicipalities"
+										@option:selected="getMunicipalities"
 										v-model="record.estate_id">
 									</v-select>
         	                    </div>
@@ -105,7 +105,7 @@
 										<td>{{ record.code }}</td>
 										<td>{{ record.name }}</td>
 										<td class="text-center">
-											<button @click="initUpdate(record.id, $event)"
+											<button @click="getParish(record.id)"
 												class="btn btn-warning btn-xs btn-icon btn-action"
 												title="Modificar registro" data-toggle="tooltip" type="button">
 												<i class="fas fa-edit"></i>
@@ -144,7 +144,6 @@
                 countries: [],
                 estates: [],
                 municipalities: [],
-				columns: ['municipality.estate.name', 'municipality.name', 'name', 'id'],
 			}
 		},
 		methods: {
@@ -163,22 +162,28 @@
                     municipality_id: '',
 				};
 			},
+
+			/**
+			 * Método que obtiene los datos de un registro en específico
+			 *
+			 * @author William Páez <paez.william8@gmail.com>
+			 */
+			 getParish(id) {
+				const vm = this;
+				axios.get(
+					`/admin/parishes/${id}`
+				).then(response => {
+					vm.record = response.data.record;
+					vm.record.country_id = response.data.record.municipality.estate.country.id;
+					vm.record.estate_id = response.data.record.municipality.estate.id;
+					vm.record.municipality_id = response.data.record.municipality.id;
+					vm.getCountries();
+					vm.getEstates();
+					vm.getMunicipalities();
+				});
+			},
 		},
 		created() {
-			this.table_options.headings = {
-				'municipality.estate.name': 'Estado',
-                'municipality.name': 'Municipio',
-                'name': 'Nombre',
-				'id': 'Acción',
-			};
-			this.table_options.sortable = ['municipality.estate.name', 'municipality.name'];
-			this.table_options.filterable = ['municipality.estate.name', 'municipality.name'];
-			this.table_options.columnsClasses = {
-				'municipality.estate.name': 'col-md-4',
-                'municipality.name': 'col-md-4',
-                'name': 'col-md-2',
-				'id': 'col-md-2',
-			};
 			this.getCountries();
             this.getEstates();
             this.getMunicipalities();

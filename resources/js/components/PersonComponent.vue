@@ -65,10 +65,11 @@
     							<div class="form-group is-required">
                                     <label>País:</label>
 									<v-select
+										inputId="id_country"
 										label="text"
 										:options="countries"
 										:reduce="country => country.id"
-										@input="getEstates"
+										@option:selected="getEstates"
 										v-model="record.country_id">
 									</v-select>
     							</div>
@@ -79,10 +80,11 @@
     							<div class="form-group is-required">
                                     <label>Estado:</label>
 									<v-select
+										inputId="id_estate"
 										label="text"
 										:options="estates"
 										:reduce="estate => estate.id"
-										@input="getMunicipalities"
+										@option:selected="getMunicipalities"
 										v-model="record.estate_id">
 									</v-select>
     							</div>
@@ -94,7 +96,7 @@
 										label="text"
 										:options="municipalities"
 										:reduce="municipalities => municipalities.id"
-										@input="getParishes"
+										@option:selected="getParishes"
 										v-model="record.municipality_id">
 									</v-select>
     							</div>
@@ -175,10 +177,18 @@
 			 * @author William Páez <paez.william8@gmail.com>
 			 */
             getPerson() {
+				const vm = this;
 				axios.get(
-					`/people/${this.person_id}`
+					`/people/${vm.person_id}`
 				).then(response => {
-					this.record = response.data.record;
+					vm.record = response.data.record;
+					vm.record.country_id = response.data.record.parish.municipality.estate.country.id;
+					vm.record.estate_id = response.data.record.parish.municipality.estate.id;
+					vm.record.municipality_id = response.data.record.parish.municipality.id;
+					vm.record.parish_id = response.data.record.parish.id;
+					vm.getEstates();
+					vm.getMunicipalities();
+					vm.getParishes();
 				});
 			},
 
@@ -196,23 +206,21 @@
                     id_number: '',
                     phone: '',
                     address: '',
-                    parish: '',
+                    parish_id: '',
 				};
 			},
-
-			prueba(v) {
-				console.log(v);
-			}
         },
         created() {
-            this.getCountries();
-            this.getEstates();
-            this.getMunicipalities();
-            this.getParishes();
+			const vm = this;
+            vm.getCountries();
+            vm.getEstates();
+            vm.getMunicipalities();
+            vm.getParishes();
 		},
 		mounted() {
-			if(this.person_id) {
-				this.getPerson();
+			const vm = this;
+			if(vm.person_id) {
+				vm.getPerson();
 			}
 		},
     }

@@ -93,14 +93,20 @@ class EstateController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra los datos de un registro en específico
      *
-     * @param  \App\Models\Estate  $estate
-     * @return \Illuminate\Http\Response
+     * @method show
+     *
+     * @author William Páez <paez.william8@gmail.com>
+     *
+     * @param integer $id Identificador del registro
+     *
+     * @return Renderable Json con el objeto
      */
-    public function show(Estate $estate)
+    public function show($id)
     {
-        //
+        $estate = Estate::where('id', $id)->with(['country'])->first();
+        return response()->json(['record' => $estate], 200);
     }
 
     /**

@@ -93,14 +93,20 @@ class ParishController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra los datos de un registro en específico
      *
-     * @param  \App\Models\Parish  $parish
-     * @return \Illuminate\Http\Response
+     * @method show
+     *
+     * @author William Páez <paez.william8@gmail.com>
+     *
+     * @param integer $id Identificador del registro
+     *
+     * @return Renderable Json con el objeto
      */
-    public function show(Parish $parish)
+    public function show($id)
     {
-        //
+        $parish = Parish::where('id', $id)->with(['municipality'])->first();
+        return response()->json(['record' => $parish], 200);
     }
 
     /**

@@ -49,7 +49,7 @@
 									<tr v-for="record in records">
 										<td>{{ record.name }}</td>
 										<td class="text-center">
-											<button @click="initUpdate(record.id, $event)"
+											<button @click="getCountry(record.id)"
 												class="btn btn-warning btn-xs btn-icon btn-action"
 												title="Modificar registro" data-toggle="tooltip" type="button">
 												<i class="fas fa-edit"></i>
@@ -94,6 +94,20 @@
 					id: '',
 					name: '',
 				};
+			},
+
+			/**
+			 * Método que obtiene los datos de un registro en específico
+			 *
+			 * @author William Páez <paez.william8@gmail.com>
+			 */
+			 getCountry(id) {
+				const vm = this;
+				axios.get(
+					`/admin/countries/${id}`
+				).then(response => {
+					vm.record = response.data.record;
+				});
 			},
 		},
 		created() {
