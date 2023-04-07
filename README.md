@@ -1,150 +1,66 @@
-# Ejemplo Laravel
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-Este sistema permite a un usuario registrarse, iniciar sesión, salir, recuperar contraseña.
-También cada usuario puede registrar los siguientes datos de personas:
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-    Nombres
-    Apellidos
-    Cédula de Identificación
-    Teléfono
-    Correo Electrónico.
+## About Laravel
 
-# Pasos para crear el entorno de desarrollo
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-Cuando somos un usuario normal del sistema, en el terminal se mostrará el siguiente símbolo: ~$
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Cuando accedemos al usuario root del sistema, en el terminal se mostrará el siguiente símbolo: ~#
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-Probado en versiones actualizadas de Debian y Ubuntu. Instalar los siguientes programas
+## Learning Laravel
 
-    ~# apt install curl git graphviz graphviz-dev php phppgadmin postgresql
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-Para instalar npm hacer lo siguiente
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-    // Ubuntu
-    ~# curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-    // Debian
-    ~# curl -fsSL https://deb.nodesource.com/setup_current.x | bash -
+## Laravel Sponsors
 
-    ~# apt install -y nodejs
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-Instalar composer seguir los pasos https://getcomposer.org/download/
+### Premium Partners
 
-Crear las siguientes carpetas
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
 
-    ~$ mkdir Programación
+## Contributing
 
-Desde el terminal, moverse a la carpeta Programación y ejecutar
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-    ~$ cd Programación/
+## Code of Conduct
 
-    ~$ mkdir php
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-Entrar a la carpeta php y hacer lo siguiente
+## Security Vulnerabilities
 
-    ~$ cd php/
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-    ~$ mkdir proyectos_laravel
+## License
 
-Desde el terminal, moverse a la carpeta proyectos_laravel y ejecutar
-
-    ~$ cd proyectos_laravel/
-
-    ~$ git clone https://github.com/willez88/laravel_example.git
-
-    ~$ cd laravel_example/
-
-Tendremos las carpetas estructuradas de la siguiente manera
-
-    // Servidor de desarrollo
-    Programación/php/proyectos_laravel/laravel_example
-
-Hacer la siguiente configuración
-
-    // Cambia el nombre del archivo
-    ~$ cp .env.example .env
-
-    // Editar las siguientes líneas del archivo .env
-    DB_CONNECTION=pgsql
-    DB_HOST=127.0.0.1
-    DB_PORT=5432
-    DB_DATABASE=laravel_example
-    DB_USERNAME=admin
-    DB_PASSWORD=123
-
-Instalar las dependencias de css y js
-
-    ~$ npm install
-
-Vite actualizará automaticamente el código del frontend con cada modificación
-
-    ~$ npm run dev
-
-Instalar los requerimientos de composer.json
-
-    ~$ composer install
-
-Crear la base de datos para __laravel_example__ usando PostgresSQL
-
-    // Acceso al usuario postgres
-    ~# su postgres
-
-    // Acceso a la interfaz de comandos de PostgreSQL
-    postgres@xxx:$ psql
-
-    // Creación del usuario de a base de datos
-    postgres=# CREATE USER admin WITH LOGIN ENCRYPTED PASSWORD '123' CREATEDB;
-    postgres=# \q
-
-    // Desautenticar el usuario PostgreSQL y regresar al usuario root
-    postgres@xxx:$ exit
-
-    // Salir del usuario root
-    ~# exit
-
-Puedes crear la base de datos usando la interfaz gráfica phppgadmin
-
-    // Desde algún navegador ir al siguiente sitio y entrar con el usuario que se acaba de crear
-    localhost/phppgadmin
-
-    // Nombre de la base de datos: laravel_example
-
-Generar la clave interna de laravel
-
-    ~$ php artisan key:generate
-
-Crear las tablas en la base de datos
-
-    ~$ php artisan migrate
-
-Ejecutar los seeders
-
-    ~$ php artisan db:seed
-
-Correr el servidor de laravel
-
-    ~$ php artisan serve
-
-Poner en el navegador la url que sale en el terminal para entrar el sistema
-
-__Algunos comandos básicos__
-
-Crear controlador de recurso, migración y seeder para el modelo
-
-    ~$ php artisan make:model -cmrs Nombre_Modelo
-
-__Nota__
-
-    A partir de Laravel 8 se usa el framework Tailwind y tiene para elegir entre Inertia.js y Livewire.
-
-    Para seguir usando Laravel con la estructura de Bootstrap y Vue.js, basta con ejecutar los siguientes comandos en una versión limpia de Laravel:
-
-    composer require laravel/ui
-
-    php artisan ui vue --auth
-
-    Con esto se genera la estructura completa de gestión de usuario como la tenía Laravel 7.
-
-    Este proyecto seguirá usando el paquete laravel/ui mientras tenga soporte.
-    
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

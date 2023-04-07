@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Schema;
  *
  * @license [GNU Public License versión 2 (GPLv2)](http://www.gnu.org/licenses/gpl-2.0.html)
  */
-class CreatePeopleTable extends Migration
+return new class extends Migration
 {
     /**
      * Ejecuta las migraciones
      *
      * @author William Páez <paez.william8@gmail.com>
      */
-    public function up()
+    public function up(): void
     {
         if (!Schema::hasTable('people')) {
             Schema::create('people', function (Blueprint $table) {
@@ -44,8 +44,8 @@ class CreatePeopleTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('people');
     }
-}
+};

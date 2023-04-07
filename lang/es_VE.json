@@ -2,5 +2,7 @@
     "Forgot Your Password?" : "¿Olvidaste Tu Contraseña?",
     "Remember Me" : "Recuérdame",
     "Confirm Password" : "Confirmar Contraseña",
-    "You are logged in!" : "¡Has iniciado sesión!"
+    "You are logged in!" : "¡Has iniciado sesión!",
+    "Reset Password" : "Reiniciar Contraseña",
+    "Send Password Reset Link" : "Enviar Enlace de Restablecimiento de Contraseña"
 }
