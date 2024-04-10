@@ -22,14 +22,14 @@ Probado en versiones actualizadas de Debian y Ubuntu. Instalar los siguientes pr
 Para instalar npm hacer lo siguiente
 
     // Ubuntu
-    ~# curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+    ~$ curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 
     // Debian
-    ~# curl -fsSL https://deb.nodesource.com/setup_current.x | bash -
+    ~# curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
 
     ~# apt install -y nodejs
 
-Instalar composer seguir los pasos https://getcomposer.org/download/
+Instalar composer seguir los pasos <https://getcomposer.org/download/>
 
 Crear las siguientes carpetas
 
