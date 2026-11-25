@@ -75,7 +75,7 @@ Hacer la siguiente configuración
 
 Instalar las dependencias de css y js
 
-    ~$ npm install
+    ~$ npm install --legacy-peer-deps
 
 Vite actualizará automaticamente el código del frontend con cada modificación
 
@@ -124,6 +124,10 @@ Ejecutar los seeders
 
 Correr el servidor de laravel
 
+    // Nuevo comando para levantar el servidor
+    ~$ composer run dev
+
+    // Comando viejo
     ~$ php artisan serve
 
 Poner en el navegador la url que sale en el terminal para entrar el sistema
@@ -136,13 +140,23 @@ Crear controlador de recurso, migración y seeder para el modelo
 
 ## Nota
 
-    A partir de Laravel 8 se usa el framework Tailwind y tiene para elegir entre Inertia.js y Livewire.
+    Desde Laravel 8 en adelante se han incluido muchas herramientas (Seguir estos pasos en caso de migrar a versiones nuevas de laravel)
 
-    Para seguir usando Laravel con la estructura de Bootstrap y Vue.js, basta con ejecutar los siguientes comandos en una versión limpia de Laravel:
+    Para seguir usando Laravel con la estructura de Bootstrap y Vue.js, basta con ejecutar los siguientes comandos en una versión limpia de Laravel
 
-    composer require laravel/ui
+    Crear versión limpia de laravel
+    
+        ~$ laravel new example_app
 
-    php artisan ui vue --auth
+    ~$ composer require laravel/ui
+
+    ~$ php artisan ui vue --auth
+
+    ~$ npm install --legacy-peer-deps
+
+    Servidor de desarrollo
+    
+      ~$ composer run dev
 
     Con esto se genera la estructura completa de gestión de usuario como la tenía Laravel 7.
 
