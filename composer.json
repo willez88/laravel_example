@@ -16,6 +16,7 @@
         "spatie/laravel-permission": "^8.5"
     },
     "require-dev": {
+        "beyondcode/laravel-er-diagram-generator": "^6.0",
         "fakerphp/faker": "^1.23",
         "laravel/boost": "^2.2",
         "laravel/pail": "^1.2.5",
